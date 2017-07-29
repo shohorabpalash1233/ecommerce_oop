@@ -21,6 +21,16 @@
 		public function adminLogin($adminUser, $adminPass){
 			$adminUser = $this->$fm->validation($adminUser);
 			$adminPass = $this->$fm->validation($adminPass);
+
+			$adminUser = mysqli_real_escape_string($this->db->link, $adminUser);
+			$adminPass = mysqli_real_escape_string($this->db->link, $adminPass);
+
+			if (empty($adminUser) || empty($adminPass)) {
+				$loginmsg = "Username or Password must not be empty";
+				return $loginmsg;
+			} else {
+				$query = "";
+			}
 		}
 	}
 ?>
