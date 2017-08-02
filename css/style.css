@@ -1523,6 +1523,15 @@ table.tblone img {
 	border:1px solid #C7C7C7;
 	margin-bottom:15px;
 }
+
+.success{
+	font-size: 18px;
+	color: green;
+}
+.error{
+	font-size: 19px;
+	color: red;
+}
 /**** Responsive Layout ****/
 @media only screen and (max-width:1024px) {
 	.wrap{
