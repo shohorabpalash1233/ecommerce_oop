@@ -12,6 +12,7 @@
 	$fm 		= new Format();
 	$product 	= new Product();
 	$cart 		= new Cart();
+	$cat 		= new Category();
 
 ?>
 <?php
@@ -56,9 +57,24 @@
 			    </div>
 			    <div class="shopping_cart">
 					<div class="cart">
-						<a href="#" title="View my shopping cart" rel="nofollow">
+						<a href="cart.php" title="View my shopping cart" rel="nofollow">
 								<span class="cart_title">Cart</span>
-								<span class="no_product">(empty)</span>
+								<span class="no_product">
+
+									<?php
+										$getData = $cart->checkCartTable();
+										if ($getData) {
+											$sum = Session::get("sum");
+											$qt = Session::get("qt");
+											echo "$".$sum." | Qty: ".$qt;
+										} else {
+											echo "(Empty)";
+										}
+
+										
+									?>
+
+								</span>
 							</a>
 						</div>
 			      </div>
