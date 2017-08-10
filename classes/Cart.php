@@ -77,8 +77,7 @@
 					  WHERE cartId = '$cartId'";
 			$cartUpdate = $this->db->update($query);
 			if ($cartUpdate) {
-				$msg = "<span class='success'>Quantity updated successfully</span>";
-				return $msg;
+				header("Location: cart.php");
 			} else {
 				$msg = "<span class='error'>Quantity not updated!</span>";
 				return $msg;
@@ -104,5 +103,12 @@
 			$result = $this->db->select($query);
 			return $result;
 		}
+
+		public function delCustomerCart(){
+			$sessionId = session_id();
+			$query = "DELETE FROM tbl_cart WHERE sessionId = '$sessionId' ";
+			$this->db->delete($query);	
+		}
+
 	}
 ?>
