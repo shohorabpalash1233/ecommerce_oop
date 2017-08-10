@@ -71,7 +71,7 @@
 							
 					?>
 
-				      <li><a href="productbycat.php"><?php echo $result['catName']; ?></a></li>
+				      <li><a href="productbycat.php?catId=<?php echo $result['catId']; ?>"><?php echo $result['catName']; ?></a></li>
 				      <?php
 				      	}
 						}
