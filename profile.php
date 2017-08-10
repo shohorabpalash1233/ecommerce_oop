@@ -33,6 +33,10 @@
 				<table class="tblone">
 					<tbody>
 						<tr>
+							
+							<td colspan="3"><h2>Your Profile Details</h2></td>
+						</tr>
+						<tr>
 							<td width="20%">Name</td>
 							<td width="5%">:</td>
 							<td><?php echo $result['name']; ?></td>
@@ -66,6 +70,11 @@
 							<td>Zip Code</td>
 							<td>:</td>
 							<td><?php echo $result['zip']; ?></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><a href="editprofile.php" title="">Update Details</a></td>
 						</tr>
 					</tbody>
 				</table>
