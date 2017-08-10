@@ -98,5 +98,52 @@
 			$result = $this->db->select($query);
 			return $result;	
 		}
+		public function updateCustomer($data, $cusid){
+			$name 		= $this->fm->validation($data['name']);
+			$address 	= $this->fm->validation($data['address']);
+			$city 		= $this->fm->validation($data['city']);
+			$country 	= $this->fm->validation($data['country']);
+			$zip 		= $this->fm->validation($data['zip']);
+			$phone 		= $this->fm->validation($data['phone']);
+			$email 		= $this->fm->validation($data['email']);
+			
+
+			$name 		= mysqli_real_escape_string($this->db->link, $data['name']);
+			$address 	= mysqli_real_escape_string($this->db->link, $data['address']);
+			$city 		= mysqli_real_escape_string($this->db->link, $data['city']);
+			$country 	= mysqli_real_escape_string($this->db->link, $data['country']);
+			$zip 		= mysqli_real_escape_string($this->db->link, $data['zip']);
+			$phone 		= mysqli_real_escape_string($this->db->link, $data['phone']);
+			$email 		= mysqli_real_escape_string($this->db->link, $data['email']);
+			
+
+			if ($name == "" || $address == "" || $city == "" || $country == "" || $zip == "" || $phone == "" || $email == "") {
+
+		    	$msg = "<span class='error'>Fields Must Not Be Empty</span>";
+				return $msg;
+
+		    	}else{
+		    		
+					$query = "UPDATE tbl_customer
+						 	  SET 
+						 	  name = '$name',
+						 	  address = '$address',
+						 	  city = '$city',
+						 	  country = '$country', 
+						 	  zip = '$zip',
+						 	  phone = '$phone',
+						 	  email = '$email'
+						 	  WHERE id = '$cusid'";
+
+					$customerUpdate = $this->db->update($query);
+					if ($customerUpdate) {
+						$msg = "<span class='success'>Customer Data updated successfully</span>";
+						return $msg;
+					} else {
+						$msg = "<span class='error'>Customer Data not updated!</span>";
+						return $msg;
+					}
+		    }
+		}
 	}
 ?>
