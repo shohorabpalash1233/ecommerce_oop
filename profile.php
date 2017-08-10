@@ -24,46 +24,55 @@
 
     	<?php
     		$id = Session::get("cusid");
+    		$getData = $customer->getCustomerData($id);
+    		if ($getData) {
+    			while ($result = $getData->fetch_assoc()) {
+    				
+    			
     	?>
 				<table class="tblone">
 					<tbody>
 						<tr>
 							<td width="20%">Name</td>
 							<td width="5%">:</td>
-							<td>user name</td>
+							<td><?php echo $result['name']; ?></td>
 						</tr>
 						<tr>
 							<td>Phone</td>
 							<td>:</td>
-							<td>user name</td>
+							<td><?php echo $result['phone']; ?></td>
 						</tr>
 						<tr>
 							<td>Email</td>
 							<td>:</td>
-							<td>user name</td>
+							<td><?php echo $result['email']; ?></td>
 						</tr>
 						<tr>
 							<td>Address</td>
 							<td>:</td>
-							<td>user name</td>
+							<td><?php echo $result['address']; ?></td>
 						</tr>
 						<tr>
 							<td>City</td>
 							<td>:</td>
-							<td>user name</td>
+							<td><?php echo $result['city']; ?></td>
 						</tr>
 						<tr>
 							<td>Country</td>
 							<td>:</td>
-							<td>user name</td>
+							<td><?php echo $result['country']; ?></td>
 						</tr>
 						<tr>
 							<td>Zip Code</td>
 							<td>:</td>
-							<td>user name</td>
+							<td><?php echo $result['zip']; ?></td>
 						</tr>
 					</tbody>
 				</table>
+				<?php
+					}
+    		}
+				?>
  		</div>
  	</div>
 	</div>
