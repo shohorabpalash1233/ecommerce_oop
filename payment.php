@@ -52,8 +52,8 @@
     			<div class="notfound">
     				<div class="payment">
     					<h2>Choose Payment Option</h2>
-    					<a href="offline.php" title="">Offline Payment</a>
-    					<a href="online.php" title="">Online Payment</a>
+    					<a href="paymentoffline.php" title="">Offline Payment</a>
+    					<a href="paymentonline.php" title="">Online Payment</a>
     				</div>
     				<div class="back">
     					<a href="cart.php" title="">Previous</a>
