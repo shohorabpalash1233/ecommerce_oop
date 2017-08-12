@@ -110,5 +110,33 @@
 			$this->db->delete($query);	
 		}
 
+		public function orderProduct($cusid){
+			$sessionId = session_id();
+			$query = "SELECT * FROM tbl_cart WHERE sessionId = '$sessionId' ";
+			$getPro = $this->db->select($query);
+			if ($getPro) {
+				while ($result = $getPro->fetch_assoc()) {
+					$productId 		= $result['productId'];
+					$productName 	= $result['productName'];
+					$quantity 		= $result['quantity'];
+					$price 			= $result['price'] * $quantity;
+					$image 			= $result['image'];
+					$insertQuery = "INSERT into tbl_order(cusid, productId, productName,  quantity, price, 				image) 		  	
+									VALUES 
+		    				('$cusid', '$productId', '$productName',  '$quantity', '$price', '$image')";
+
+					$insertOrder = $this->db->insert($insertQuery);
+
+					
+				}
+			}
+		}
+
+		public function payableAmount($cusid){
+			$query = "SELECT price FROM tbl_order WHERE cusId = '$cusid' AND date = now()";
+			$result = $this->db->select($query);
+			return $result;
+		}
+
 	}
 ?>
