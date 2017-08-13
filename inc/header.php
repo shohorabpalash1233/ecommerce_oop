@@ -81,7 +81,9 @@
 			      </div>
 			      <?php
 			      	if (isset($_GET['cid'])) {
+			      		$cusid = Session::get("cusid");
 			      		$delData = $cart->delCustomerCart();
+			      		$delComp = $product->delCompareData($cusid);
 			      		Session::destroy();
 			      	}
 			      ?>
@@ -105,7 +107,7 @@
 <div class="menu">
 	<ul id="dc_mega-menu-orange" class="dc_mm-orange">
 	  <li><a href="index.php">Home</a></li>
-	  <li><a href="products.php">Products</a> </li>
+	  
 	  <li><a href="topbrands.php">Top Brands</a></li>
 	  <?php
 	  	$chkCart = $cart->checkCartTable();
@@ -113,6 +115,16 @@
 	  		?>
 	  		<li><a href="cart.php">Cart</a></li>
 	  		<li><a href="payment.php">Payment</a></li>
+	  		<?php
+	  	}
+	  ?>
+	  <?php
+	  	$cusid = Session::get("cusid");
+	  	$chkOrder = $cart->checkOrder($cusid);
+	  	if ($chkOrder) {
+	  		?>
+	  		
+	  		<li><a href="orderdetails.php">Order</a></li>
 	  		<?php
 	  	}
 	  ?>
@@ -126,7 +138,20 @@
 	  		<?php
 	  	}
 	  ?>
-	 
+	  <?php
+	  	$cusid = Session::get("cusid");
+			$getPd = $product->getCompareData($cusid);
+			if ($getPd) {
+	  ?>
+	 	<li><a href="compare.php">Compare</a> </li>
+	 	<?php } ?>
+
+	 	<?php
+			$checkWlist = $product->checkWlist($cusid);
+			if ($checkWlist) {
+	  ?>
+	 	<li><a href="wishlist.php">Wishlist</a> </li>
+	 	<?php } ?>
 	  <li><a href="contact.php">Contact</a> </li>
 	  <div class="clear"></div>
 	</ul>
