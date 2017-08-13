@@ -138,5 +138,68 @@
 			return $result;
 		}
 
+		public function getOrderProduct($cusid){
+			$query = "SELECT * FROM tbl_order WHERE cusId = '$cusid' ORDER BY date DESC";
+			$result = $this->db->select($query);
+			return $result;
+		}
+
+		public function checkOrder($cusid){
+			
+			$query = "SELECT * FROM tbl_order WHERE cusId = '$cusid' ";
+			$result = $this->db->select($query);
+			return $result;
+		}
+		public function getAllOrderProduct(){
+			$query = "SELECT * FROM tbl_order ORDER BY date DESC";
+			$result = $this->db->select($query);
+			return $result;
+		}
+
+		public function productShipped($id, $date, $price){
+			$id 		= mysqli_real_escape_string($this->db->link, $id);
+			$date 		= mysqli_real_escape_string($this->db->link, $date);
+			$price 		= mysqli_real_escape_string($this->db->link, $price);
+			$query = "UPDATE tbl_order SET status = '1' WHERE cusId = '$id' AND date = '$date' AND price = '$price' ";
+				$catUpdate = $this->db->update($query);
+				if ($catUpdate) {
+					$msg = "<span class='success'>Updated successfully</span>";
+					return $msg;
+				} else {
+					$msg = "<span class='error'>Not updated!</span>";
+					return $msg;
+				}
+		}
+		public function delProductShipped($id, $date, $price){
+			$id 		= mysqli_real_escape_string($this->db->link, $id);
+			$date 		= mysqli_real_escape_string($this->db->link, $date);
+			$price 		= mysqli_real_escape_string($this->db->link, $price);
+
+			$query = "DELETE FROM tbl_order WHERE cusId = '$id' AND date = '$date' AND price = '$price' ";
+			$deldata = $this->db->delete($query);
+			if ($deldata) {
+					$msg = "<span class='success'>Deleted successfully</span>";
+					return $msg;
+				} else {
+					$msg = "<span class='error'>Not deleted!</span>";
+					return $msg;
+				}
+		}
+
+		public function productShippedConfirm($id, $date, $price){
+			$id 		= mysqli_real_escape_string($this->db->link, $id);
+			$date 		= mysqli_real_escape_string($this->db->link, $date);
+			$price 		= mysqli_real_escape_string($this->db->link, $price);
+			$query = "UPDATE tbl_order SET status = '2' WHERE cusId = '$id' AND date = '$date' AND price = '$price' ";
+				$catUpdate = $this->db->update($query);
+				if ($catUpdate) {
+					$msg = "<span class='success'>Updated successfully</span>";
+					return $msg;
+				} else {
+					$msg = "<span class='error'>Not updated!</span>";
+					return $msg;
+				}
+		}
+
 	}
 ?>
